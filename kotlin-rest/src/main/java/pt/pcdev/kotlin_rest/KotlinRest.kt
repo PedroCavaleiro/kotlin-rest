@@ -220,11 +220,23 @@ class SwiftlyRest private constructor() {
             return Result.Failure(KotlinRestError.InvalidURL)
         }
 
+        var allHeaders: MutableMap<String, String> = headers.toMutableMap()
+        if (apiAuthConfiguration != null) {
+            val authHeaders = apiAuthConfiguration!!.generateHeaders(method, body, jwtToken)
+            for ((key, value) in authHeaders) {
+                allHeaders[key] = value
+            }
+        } else {
+            if (jwtToken != null) {
+                allHeaders["Authorization"] = "Bearer $jwtToken"
+            }
+        }
+
         writeLog("$tag[requestURL] Request URL: $requestUrl")
         val request = HttpRequest.newBuilder()
             .uri(requestUrl)
             .method(method.name, HttpRequest.BodyPublishers.ofString(body?.toString() ?: ""))
-            .headers(*headers.flatMap { listOf(it.key, it.value) }.toTypedArray())
+            .headers(*allHeaders.flatMap { listOf(it.key, it.value) }.toTypedArray())
             .build()
 
         val response = try {
