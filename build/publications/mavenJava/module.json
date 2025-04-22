@@ -1,0 +1,96 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "pt.pcdev",
+    "module": "kotlin-rest",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlin-rest-1.0.0.jar",
+          "url": "kotlin-rest-1.0.0.jar",
+          "size": 36020,
+          "sha512": "8a650d52d75055155dff653a0236121c25df3d309101ca0e3d16d653d581329014d834cd85e54836bac1e27aee19a698bfc543eea4658b0ad469ef060c657491",
+          "sha256": "8263a8d4249059985c284fad47db1a90d96a1a70c5a35f096099ca3d8f2b0fa4",
+          "sha1": "6c39209e7eb6e13fa8b18aa9f310b591db17a11b",
+          "md5": "5eaaf2b4ea274a48f16ad54568f0c6e3"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.8.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlin-rest-1.0.0.jar",
+          "url": "kotlin-rest-1.0.0.jar",
+          "size": 36020,
+          "sha512": "8a650d52d75055155dff653a0236121c25df3d309101ca0e3d16d653d581329014d834cd85e54836bac1e27aee19a698bfc543eea4658b0ad469ef060c657491",
+          "sha256": "8263a8d4249059985c284fad47db1a90d96a1a70c5a35f096099ca3d8f2b0fa4",
+          "sha1": "6c39209e7eb6e13fa8b18aa9f310b591db17a11b",
+          "md5": "5eaaf2b4ea274a48f16ad54568f0c6e3"
+        }
+      ]
+    }
+  ]
+}
