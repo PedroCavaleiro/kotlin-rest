@@ -190,7 +190,7 @@ class SwiftlyRest private constructor() {
      *
      * @param endpoint The endpoint where to send the request
      * @param method The `HTTPMethod` of the request
-     * @param body The body of the request, can be null
+     * @param body The body of the request can be null
      * @param headers The extra headers to send to the server
      */
     private fun makeRequest(
@@ -218,6 +218,8 @@ class SwiftlyRest private constructor() {
         }
 
         val allHeaders: MutableMap<String, String> = headers.toMutableMap()
+        allHeaders["Content-Type"] = "application/json"
+
         if (apiAuthConfiguration != null) {
             val authHeaders = apiAuthConfiguration!!.generateHeaders(method, body, jwtToken)
             for ((key, value) in authHeaders) {
@@ -229,10 +231,16 @@ class SwiftlyRest private constructor() {
             }
         }
 
+        if (loggingEnabled) {
+            allHeaders.forEach { (key, value) ->
+                writeLog("$tag[requestHeader] $key: $value")
+            }
+        }
+
         writeLog("$tag[requestURL] Request URL: $requestUrl")
         val request = HttpRequest.newBuilder()
             .uri(requestUrl)
-            .method(method.name, HttpRequest.BodyPublishers.ofString(body?.toString() ?: ""))
+            .method(method.name, HttpRequest.BodyPublishers.ofString(Json.encodeToString(body)))
             .headers(*allHeaders.flatMap { listOf(it.key, it.value) }.toTypedArray())
             .build()
 
